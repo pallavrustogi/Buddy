@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Buddy — Your friendly repo onboarding agent</title>
+  <meta name="description" content="Buddy is a Copilot CLI agent that helps brand-new contributors feel comfortable in any repo. Portable knowledge in .buddy/ — Markdown + JSON only." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%9D%3C/text%3E%3C/svg%3E" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="badge">v0.2.1 · Alpha — packaged locally</div>
+    <h1>Hi, I'm <span class="brand">Buddy</span> 🤝</h1>
+    <p class="tagline">
+      I help brand-new contributors feel at home in <em>any</em> code repo —
+      fast. I explain things like you're 10, write everything down in plain
+      Markdown, and travel with the repo so the next person benefits too.
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#get-started">Get started</a>
+      <a class="btn btn-ghost" href="https://github.com/" target="_blank" rel="noopener">View on GitHub</a>
+    </div>
+    <pre class="install-cmd"><code># Buddy isn't on npm yet — download buddy-&lt;version&gt;.tgz, then:
+npm install -g ./buddy-0.3.0.tgz</code></pre>
+    <p class="rai">
+      <strong>Friendly by design:</strong> Buddy never invents facts, never
+      stores secrets, and never reaches outside your repo for memory.
+      Everything it learns is written to <code>.buddy/</code> as plain
+      Markdown — readable by humans, reviewable in a PR, portable between machines.
+    </p>
+  </div>
+</header>
+
+<section class="features">
+  <div class="container">
+    <p class="eyebrow">Why Buddy?</p>
+    <h2>A teammate for day&nbsp;one,<br/>and every day after</h2>
+    <p class="lede">
+      Most repos punish newcomers with stale READMEs and tribal knowledge.
+      Buddy fixes that — it builds a friendly onboarding doc set right inside
+      your repo, then keeps it fresh as the code changes.
+    </p>
+
+    <div class="grid">
+      <article class="card">
+        <div class="emoji">📖</div>
+        <h3>Explained like you're 10</h3>
+        <p>Short sentences. Plain words. Real examples. No jargon dumps. If a term is fancy, Buddy defines it in one line.</p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🗂️</div>
+        <h3>Portable knowledge</h3>
+        <p>Everything lives in a <code>.buddy/</code> folder at your repo root. Markdown for humans, small JSON for indexes. No databases, no embeddings, no global caches.</p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🐙</div>
+        <h3>Git-friendly &amp; shareable</h3>
+        <p>Commit <code>.buddy/</code> with your code. The next person who clones the repo gets the same onboarding instantly — no re-indexing required.</p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🔗</div>
+        <h3>Captures team links safely</h3>
+        <p>Drop in a runbook, design doc, or wiki URL. Buddy files it under tags and <strong>redacts secrets</strong> in URLs (tokens, keys, passwords) before saving.</p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🔄</div>
+        <h3>Stays fresh on every commit</h3>
+        <p>Run <code>buddy status</code> or <code>buddy precheck</code> before a PR. Buddy flags which docs are likely stale based on what you just changed.</p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🛡️</div>
+        <h3>Honest about uncertainty</h3>
+        <p>If Buddy isn't sure, it says so — and writes the gap to <code>NOTES/open_questions.md</code> with a hint about which file to check next.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="get-started">
+  <div class="container">
+    <p class="eyebrow">How it works</p>
+    <h2>Three commands to a friendlier repo</h2>
+
+    <ol class="steps">
+      <li>
+        <span class="step-num">1</span>
+        <div>
+          <h3>Install</h3>
+          <p>Buddy isn't on npm yet. Download the latest <code>buddy-&lt;version&gt;.tgz</code> tarball from the project, then install it globally:</p>
+          <pre><code>npm install -g ./buddy-0.3.0.tgz</code></pre>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">2</span>
+        <div>
+          <h3>Initialize</h3>
+          <p>This scaffolds <code>.buddy/</code>, installs the Buddy agent into <code>.github/agents/</code>, and opens the welcome page.</p>
+          <pre><code>cd your-repo
+buddy init</code></pre>
+        </div>
+      </li>
+      <li>
+        <span class="step-num">3</span>
+        <div>
+          <h3>Meet your buddy</h3>
+          <p>Launch Copilot CLI in the same folder and pick the buddy agent. Then ask it to scan and fill in the docs.</p>
+          <pre><code>copilot
+/agent     # then pick "buddy"</code></pre>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="anatomy">
+  <div class="container">
+    <p class="eyebrow">What's inside <code>.buddy/</code></p>
+    <h2>Plain files. Nothing magic.</h2>
+    <p class="lede">
+      Open the folder. Read it. Edit it. Diff it. Commit it. It's just Markdown
+      and a tiny JSON index — designed to live in your git history forever.
+    </p>
+
+    <pre class="tree"><code>.buddy/
+├── README_FOR_HUMANS.md     ← start here (the home page)
+├── GETTING_STARTED.md       ← prerequisites, install, build, run, test
+├── ARCHITECTURE.md          ← components, responsibilities, data flow
+├── TECH_STACK.md            ← languages, frameworks, build tools
+├── INTEGRATIONS.md          ← DBs, queues, auth, external APIs
+├── CHANGELOG_SUMMARY.md     ← human-friendly recent changes
+├── LINKS.md                 ← curated team links (with “why it matters”)
+├── manifest.json            ← last_indexed_commit + timestamps
+├── MAP/
+│   ├── repo_map.md          ← top-folder purposes; where to start reading
+│   ├── entry_points.md      ← servers, CLIs, jobs, schedulers
+│   └── data_flow.md         ← request comes in → where it goes
+├── INDEX/
+│   └── links.json           ← machine-readable mirror of LINKS.md
+└── NOTES/
+    ├── open_questions.md    ← what Buddy couldn't infer, and where to look
+    └── assumptions.md       ← assumptions, never presented as fact</code></pre>
+  </div>
+</section>
+
+<section class="commands">
+  <div class="container">
+    <p class="eyebrow">CLI cheatsheet</p>
+    <h2>Six small commands</h2>
+    <div class="cmd-grid">
+      <div class="cmd">
+        <code>buddy init</code>
+        <p>Create <code>.buddy/</code>, install the agent, open the home page. Safe to re-run — it never overwrites your edits.</p>
+      </div>
+      <div class="cmd">
+        <code>buddy open [doc]</code>
+        <p>Open any Buddy doc by name: <code>home</code>, <code>architecture</code>, <code>getting-started</code>, <code>links</code>, etc.</p>
+      </div>
+      <div class="cmd">
+        <code>buddy status</code>
+        <p>Show whether <code>.buddy/</code> is up to date with the latest commit. Lists what changed since the last index.</p>
+      </div>
+      <div class="cmd">
+        <code>buddy link &lt;url&gt;</code>
+        <p>Capture a doc link. Adds a friendly entry to <code>LINKS.md</code> and a tagged record to <code>INDEX/links.json</code>. Secrets in URLs are redacted automatically.</p>
+      </div>
+      <div class="cmd">
+        <code>buddy precheck</code>
+        <p>Before you commit, see which Buddy docs are likely stale based on the files you changed.</p>
+      </div>
+      <div class="cmd">
+        <code>buddy agent install</code>
+        <p>(Re)install the Buddy agent profile into <code>.github/agents/buddy.md</code> so Copilot CLI auto-discovers it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rai-section">
+  <div class="container">
+    <p class="eyebrow">Built with care</p>
+    <h2>Boring, on purpose</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>🔒 Won't leak secrets</h3>
+        <p>Buddy redacts tokens, API keys, passwords, and OAuth fragments from any URL it captures — even if you paste them by accident.</p>
+      </div>
+      <div class="card">
+        <h3>📍 Stays in your repo</h3>
+        <p>No external databases. No embeddings. No global caches. No home-directory state. If you delete <code>.buddy/</code>, Buddy forgets — by design.</p>
+      </div>
+      <div class="card">
+        <h3>📝 Cites its evidence</h3>
+        <p>When Buddy answers a question, it points to the file (and line range) it learned from. If it's guessing, it says so.</p>
+      </div>
+      <div class="card">
+        <h3>🤲 Hands you the wheel</h3>
+        <p>Every doc is plain Markdown. Edit anything. Buddy treats your edits as truth on the next run.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <p>
+      <strong>Buddy</strong> · MIT license · Built for the Copilot CLI
+    </p>
+    <p class="muted">
+      Knowledge that travels with the repo. Onboarding that doesn't go stale.
+    </p>
+  </div>
+</footer>
+
+</body>
+</html>

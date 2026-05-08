@@ -1,0 +1,38 @@
+{
+  "name": "buddy",
+  "version": "0.3.0",
+  "description": "A friendly Copilot CLI agent that helps newcomers understand any code repository. Stores portable, git-checkin-friendly knowledge in .buddy/.",
+  "keywords": [
+    "copilot",
+    "cli",
+    "onboarding",
+    "documentation",
+    "agent",
+    "buddy"
+  ],
+  "license": "MIT",
+  "author": "Buddy Contributors",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "bin": {
+    "buddy": "bin/buddy.js"
+  },
+  "main": "src/lib/index.js",
+  "files": [
+    "bin/",
+    "src/",
+    "agents/",
+    "templates/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node bin/buddy.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
+}

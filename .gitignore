@@ -1,0 +1,5 @@
+node_modules/
+/.buddy/
+*.log
+.DS_Store
+.playwright-mcp/
