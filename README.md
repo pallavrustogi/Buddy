@@ -12,13 +12,8 @@ You just cloned a repo you've never seen. You have no idea what it does, how to 
 
 ## Install
 
-Buddy isn't on npm yet. Grab the latest tarball and install it globally:
-
 ```bash
-# 1. Download buddy-<version>.tgz from the project (e.g., the GitHub Releases page
-#    or directly from the repo root).
-# 2. Install it globally:
-npm install -g ./buddy-0.3.0.tgz
+npm install -g @prustogi/buddy
 ```
 
 Requires **Node 18+**. You'll also want at least one of:
