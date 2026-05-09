@@ -5,7 +5,7 @@ import { copyTree } from '../lib/scaffold.js';
 import { readManifest, writeManifest, defaultManifest } from '../lib/manifest.js';
 import { hasGit, headCommit } from '../lib/git.js';
 import { openFile } from '../lib/opener.js';
-import { installAgent } from './agent.js';
+import { installAgent, installClaudeAgent } from './agent.js';
 
 export async function initCommand(opts) {
   const repoRoot = findRepoRoot();
@@ -45,9 +45,8 @@ export async function initCommand(opts) {
 
   console.log('');
   console.log('Next steps:');
-  console.log('  1. Launch Copilot CLI in this repo:  copilot');
-  console.log('  2. Run:  /agent          (then pick "buddy")');
-  console.log('  3. Ask Buddy: "Scan this repo and fill in .buddy/"');
+  console.log('  Copilot CLI:  /agent  →  pick "buddy"  →  "Scan this repo and fill in .buddy/"');
+  console.log('  Claude Code:  @buddy  →  "Scan this repo and fill in .buddy/"');
 
   autoOpenHome(homePage, opts);
 }
@@ -55,18 +54,33 @@ export async function initCommand(opts) {
 function maybeInstallAgent(repoRoot, opts) {
   if (opts.installAgent === false) return;
   const scope = opts.userAgent ? 'user' : 'repo';
+
+  // Install for Copilot CLI
   try {
     const result = installAgent({ scope, repoRoot });
     if (result.action === 'already-installed') {
-      console.log(`✓ Buddy agent already installed at ${result.dest}`);
+      console.log(`✓ Copilot CLI agent already installed at ${result.dest}`);
     } else if (result.action === 'exists-different') {
-      console.log(`! Buddy agent at ${result.dest} differs from the packaged version.`);
-      console.log('  Run "buddy agent install --force" to update it.');
+      console.log(`! Copilot CLI agent at ${result.dest} differs — run "buddy agent install --force" to update.`);
     } else {
-      console.log(`🤝 Installed Buddy agent at ${result.dest}`);
+      console.log(`🤝 Installed Copilot CLI agent at ${result.dest}`);
     }
   } catch (err) {
-    console.log(`! Could not install Buddy agent: ${err.message}`);
+    console.log(`! Could not install Copilot CLI agent: ${err.message}`);
+  }
+
+  // Install for Claude Code
+  try {
+    const result = installClaudeAgent({ scope, repoRoot });
+    if (result.action === 'already-installed') {
+      console.log(`✓ Claude Code agent already installed at ${result.dest}`);
+    } else if (result.action === 'exists-different') {
+      console.log(`! Claude Code agent at ${result.dest} differs — run "buddy agent install --claude --force" to update.`);
+    } else {
+      console.log(`🤝 Installed Claude Code agent at ${result.dest}`);
+    }
+  } catch (err) {
+    console.log(`! Could not install Claude Code agent: ${err.message}`);
   }
 }
 

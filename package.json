@@ -1,9 +1,10 @@
 {
   "name": "buddy",
   "version": "0.3.0",
-  "description": "A friendly Copilot CLI agent that helps newcomers understand any code repository. Stores portable, git-checkin-friendly knowledge in .buddy/.",
+  "description": "A friendly onboarding agent for GitHub Copilot CLI and Claude Code CLI. Helps newcomers understand any code repository. Stores portable, git-friendly knowledge in .buddy/.",
   "keywords": [
     "copilot",
+    "claude",
     "cli",
     "onboarding",
     "documentation",

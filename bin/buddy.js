@@ -22,10 +22,10 @@ program
 
 program
   .command('init')
-  .description('Create .buddy/ in the current repo, install the Buddy agent, and auto-open the home page.')
+  .description('Create .buddy/ in the current repo, install the Buddy agent for all CLIs, and auto-open the home page.')
   .option('--no-open', 'Do not auto-open the home page after init.')
-  .option('--no-install-agent', 'Do not install the Buddy agent into .github/agents/.')
-  .option('--user-agent', 'Install the Buddy agent at user level (~/.copilot/agents/) instead of repo level.')
+  .option('--no-install-agent', 'Do not install the Buddy agent.')
+  .option('--user-agent', 'Install the Buddy agent at user level instead of repo level.')
   .option('--force', 'Re-scaffold .buddy/ even if files exist (will not overwrite).')
   .action(initCommand);
 
@@ -56,9 +56,11 @@ program
 
 program
   .command('agent [subcommand]')
-  .description('Install the Buddy agent so Copilot CLI can find it. Subcommands: install (default) | path')
-  .option('--user', 'Install at user level (~/.copilot/agents/) instead of repo level (.github/agents/).')
+  .description('Manage the Buddy agent. Subcommands: install (default) | list | path')
+  .option('--user', 'Install at user level instead of repo level.')
   .option('--force', 'Overwrite an existing buddy.md at the destination.')
+  .option('--claude', 'Install for Claude Code only (.claude/agents/).')
+  .option('--all', 'Install for all CLIs (Copilot CLI + Claude Code).')
   .action(agentCommand);
 
 program.parseAsync(process.argv).catch((err) => {

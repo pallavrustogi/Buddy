@@ -11,14 +11,14 @@ How a brand-new contributor goes from "I just cloned this strange repo" to "I un
 | Command | When |
 |---|---|
 | `npm install -g ./buddy-<version>.tgz` | Once per machine (download tgz first; Buddy isn't on npm yet) |
-| `buddy init` | Once per repo (creates `.buddy/`) |
-| `buddy agent` | Once per machine, prints path to wire into Copilot CLI |
+| `buddy init` | Once per repo (creates `.buddy/`, installs agents for all CLIs) |
+| `buddy agent list` | Check which agent locations are installed |
 | `buddy open` | Anytime — opens `.buddy/README_FOR_HUMANS.md` (the home page) |
 | `buddy precheck` | Before commits — shows likely-stale docs |
 | `buddy link <url>` | Drop a doc link from the terminal |
 | `buddy status` | "Is .buddy/ stale?" |
 
-Everything *smart* (writing docs, answering questions) happens inside Copilot CLI by talking to Buddy in plain English.
+Everything *smart* (writing docs, answering questions) happens inside your AI CLI — either **GitHub Copilot CLI** or **Claude Code CLI** — by talking to Buddy in plain English.
 
 ---
 
@@ -31,7 +31,10 @@ Buddy isn't published to npm yet, so we install from a local tarball:
 npm install -g ./buddy-0.3.0.tgz
 ```
 
-The user also needs GitHub Copilot CLI installed. Buddy is the *brain definition*; Copilot CLI is the *runtime*.
+You also need at least one AI CLI installed. Buddy is the *brain definition*; the AI CLI is the *runtime*:
+
+- **GitHub Copilot CLI:** `gh extension install github/gh-copilot`
+- **Claude Code CLI:** `npm install -g @anthropic-ai/claude-code`
 
 ## Step 2 — Clone the strange repo
 
@@ -51,22 +54,40 @@ buddy init
 What this does (deterministic, no AI yet):
 - Creates `.buddy/` with all template files (skeleton)
 - Creates `.buddy/manifest.json` with `last_indexed_commit: null`
+- Installs the Buddy agent for **both** Copilot CLI and Claude Code
 - Prints next steps
 
 If `.buddy/` already exists (a teammate already committed it):
 - `buddy init` says *"Already initialized."*
 - **Auto-opens the home page** (`.buddy/README_FOR_HUMANS.md`) so the new user lands on something useful immediately.
 
-## Step 4 — Load Buddy into Copilot CLI
+Agent files installed by `buddy init`:
 
+| CLI | Repo-level location |
+|---|---|
+| GitHub Copilot CLI | `.github/agents/buddy.md` |
+| Claude Code CLI | `.claude/agents/buddy.md` |
+
+To install at user level instead: use `buddy agent install --user` or `buddy agent install --claude --user`.
+
+## Step 4 — Load Buddy into your AI CLI
+
+Pick whichever AI CLI you have installed:
+
+**GitHub Copilot CLI**
 ```bash
-buddy agent          # prints path to the agent prompt file
-copilot              # launch Copilot CLI
-> /agents add buddy  # register Buddy using the path printed
-> /agents            # pick "Buddy"
+copilot
+> /agents add buddy   # register Buddy using the path shown by `buddy agent path`
+> /agents             # pick "Buddy"
 ```
 
-Copilot CLI now acts as Buddy in this repo.
+**Claude Code CLI**
+```bash
+claude
+> @buddy              # Buddy is auto-discovered from .claude/agents/buddy.md
+```
+
+The AI CLI now acts as Buddy in this repo.
 
 ## Step 5 — First ask: "Scan this repo"
 
@@ -103,7 +124,7 @@ Beginner-friendly markdown. Short sentences. Defined jargon. Exact commands. The
 
 ## Step 7 — Daily use: ask questions
 
-Inside Copilot CLI with Buddy loaded:
+Inside your AI CLI with Buddy loaded:
 
 **Question about code**
 ```
@@ -143,10 +164,10 @@ Likely-stale Buddy docs:
    .buddy/INTEGRATIONS.md       (db.js changed)
    .buddy/CHANGELOG_SUMMARY.md  (always)
 
-Tip: ask Buddy in Copilot CLI: "update buddy for my changes"
+Tip: ask Buddy in your AI CLI: "update buddy for my changes"
 ```
 
-In Copilot CLI:
+In your AI CLI:
 ```
 > update buddy
 ```
@@ -162,7 +183,7 @@ cd mystery-project
 buddy init        # detects existing .buddy/, auto-opens home page
 ```
 
-Even without Copilot CLI installed, the markdown docs are already in the repo and readable. They install Buddy only if they want to *update* the docs.
+Even without any AI CLI installed, the markdown docs are already in the repo and readable. They install Buddy only if they want to *update* the docs.
 
 ---
 
@@ -195,12 +216,13 @@ Buddy should **never leave the user staring at a blank terminal** after a succes
 - ✅ Cite file paths/line ranges when answering questions
 - ✅ Portable — pure markdown + JSON, no DB, no embeddings
 - ✅ Auto-open the home page so users never feel lost
+- ✅ Works with GitHub Copilot CLI and Claude Code CLI
 
 ## Limitations (be honest)
 
 - ❌ Not a code search engine — relies on the host AI tool's file reading
 - ❌ Can't read external URLs — stores link metadata only
 - ❌ First-pass `ARCHITECTURE.md` is best-effort and marked "inferred"
-- ❌ AI-tool dependent — needs Copilot CLI (or equivalent) for the smart parts
+- ❌ AI-tool dependent — needs GitHub Copilot CLI or Claude Code (or equivalent) for the smart parts
 - ❌ No live cross-machine sync — pull + re-run to refresh
 - ❌ Faithful to the repo — if the repo is misleading, Buddy reflects that

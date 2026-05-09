@@ -38,6 +38,10 @@ export function agentPromptPath() {
   return join(packageRoot(), 'agents', 'buddy.agent.md');
 }
 
+export function claudeAgentPromptPath() {
+  return join(packageRoot(), 'agents', 'buddy-claude.agent.md');
+}
+
 export function isDir(p) {
   try {
     return statSync(p).isDirectory();

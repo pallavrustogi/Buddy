@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Buddy — Your friendly repo onboarding agent</title>
-  <meta name="description" content="Buddy is a Copilot CLI agent that helps brand-new contributors feel comfortable in any repo. Portable knowledge in .buddy/ — Markdown + JSON only." />
+  <meta name="description" content="Buddy is an onboarding agent for GitHub Copilot CLI and Claude Code CLI that helps brand-new contributors feel comfortable in any repo. Portable knowledge in .buddy/ — Markdown + JSON only." />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A4%9D%3C/text%3E%3C/svg%3E" />
 </head>
@@ -12,12 +12,13 @@
 
 <header class="hero">
   <div class="container">
-    <div class="badge">v0.2.1 · Alpha — packaged locally</div>
+    <div class="badge">v0.3.0 · Alpha — packaged locally</div>
     <h1>Hi, I'm <span class="brand">Buddy</span> 🤝</h1>
     <p class="tagline">
       I help brand-new contributors feel at home in <em>any</em> code repo —
       fast. I explain things like you're 10, write everything down in plain
       Markdown, and travel with the repo so the next person benefits too.
+      Works with <strong>GitHub Copilot CLI</strong> and <strong>Claude Code CLI</strong>.
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#get-started">Get started</a>
@@ -102,7 +103,7 @@ npm install -g ./buddy-0.3.0.tgz</code></pre>
         <span class="step-num">2</span>
         <div>
           <h3>Initialize</h3>
-          <p>This scaffolds <code>.buddy/</code>, installs the Buddy agent into <code>.github/agents/</code>, and opens the welcome page.</p>
+          <p>This scaffolds <code>.buddy/</code>, installs the Buddy agent for <strong>both</strong> Copilot CLI (<code>.github/agents/</code>) and Claude Code (<code>.claude/agents/</code>), and opens the welcome page.</p>
           <pre><code>cd your-repo
 buddy init</code></pre>
         </div>
@@ -111,9 +112,14 @@ buddy init</code></pre>
         <span class="step-num">3</span>
         <div>
           <h3>Meet your buddy</h3>
-          <p>Launch Copilot CLI in the same folder and pick the buddy agent. Then ask it to scan and fill in the docs.</p>
-          <pre><code>copilot
-/agent     # then pick "buddy"</code></pre>
+          <p>Launch your AI CLI of choice in the same folder, then ask Buddy to scan the repo and fill in the docs.</p>
+          <pre><code># GitHub Copilot CLI
+copilot
+/agent     # then pick "buddy"
+
+# — or — Claude Code CLI
+claude
+@buddy</code></pre>
         </div>
       </li>
     </ol>
@@ -177,7 +183,7 @@ buddy init</code></pre>
       </div>
       <div class="cmd">
         <code>buddy agent install</code>
-        <p>(Re)install the Buddy agent profile into <code>.github/agents/buddy.md</code> so Copilot CLI auto-discovers it.</p>
+        <p>(Re)install for Copilot CLI. Use <code>--claude</code> for Claude Code, <code>--all</code> for both. <code>buddy agent list</code> shows what's installed where.</p>
       </div>
     </div>
   </div>
@@ -211,7 +217,7 @@ buddy init</code></pre>
 <footer class="footer">
   <div class="container">
     <p>
-      <strong>Buddy</strong> · MIT license · Built for the Copilot CLI
+      <strong>Buddy</strong> · MIT license · Works with GitHub Copilot CLI &amp; Claude Code CLI
     </p>
     <p class="muted">
       Knowledge that travels with the repo. Onboarding that doesn't go stale.
