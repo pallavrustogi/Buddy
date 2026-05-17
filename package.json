@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.3.0",
+  "version": "0.5.0",
   "description": "A friendly onboarding agent for GitHub Copilot CLI and Claude Code CLI. Helps newcomers understand any code repository. Stores portable, git-friendly knowledge in .buddy/.",
   "keywords": [
     "copilot",

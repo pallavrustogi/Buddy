@@ -52,6 +52,7 @@ Create if missing; update if stale.
 - **`.buddy/TECH_STACK.md`** — Languages, frameworks, build tools, test frameworks, CI hints (only if inferable from the repo).
 - **`.buddy/INTEGRATIONS.md`** — External services: DBs, queues, auth, APIs. Include where each is configured (file paths).
 - **`.buddy/CHANGELOG_SUMMARY.md`** — Human-friendly summary of recent changes using git history.
+- **`.buddy/STARTER_TASKS.md`** — Friendly first things a newcomer can try. Mix curated warm-ups with anything obvious from the repo (small bugs, undocumented behavior, missing tests). Keep tasks tiny and unambiguous.
 
 ### Maps
 - **`.buddy/MAP/repo_map.md`** — Directory map: each top-level folder's purpose; "where to start reading code".

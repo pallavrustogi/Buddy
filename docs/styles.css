@@ -113,6 +113,15 @@ pre code {
   flex-wrap: wrap;
   margin-bottom: 28px;
 }
+.shields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin: 0 auto 22px;
+  max-width: 760px;
+}
+.shields img { height: 22px; vertical-align: middle; }
 .btn {
   display: inline-block;
   padding: 12px 24px;

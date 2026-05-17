@@ -1,5 +1,14 @@
 # Buddy 🐶
 
+[![npm version](https://img.shields.io/npm/v/@prustogi/buddy.svg?label=npm&color=cb3837&logo=npm)](https://www.npmjs.com/package/@prustogi/buddy)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Node.js 18+](https://img.shields.io/badge/node-18%2B-43853d?logo=node.js&logoColor=white)
+![Works with GitHub Copilot CLI](https://img.shields.io/badge/GitHub%20Copilot%20CLI-supported-2da44e?logo=github)
+![Works with Claude Code](https://img.shields.io/badge/Claude%20Code-supported-d97706?logo=anthropic&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-supported-0078d4?logo=windows&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-supported-000000?logo=apple&logoColor=white)
+![Linux](https://img.shields.io/badge/Linux-supported-fcc624?logo=linux&logoColor=black)
+
 > A friendly agent that helps newcomers understand any code repository.
 > Works with **GitHub Copilot CLI** and **Claude Code CLI**.
 > Buddy stores all knowledge in a portable `.buddy/` folder at the repo root — pure Markdown + small JSON, no databases, no embeddings, no global state. Check it into git and your whole team benefits.

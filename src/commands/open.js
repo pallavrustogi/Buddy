@@ -22,6 +22,7 @@ const ALIASES = {
   'data-flow': 'MAP/data_flow.md',
   questions: 'NOTES/open_questions.md',
   assumptions: 'NOTES/assumptions.md',
+  tour: 'tour.html',
 };
 
 export async function openCommand(doc, opts) {

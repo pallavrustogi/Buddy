@@ -12,13 +12,23 @@
 
 <header class="hero">
   <div class="container">
-    <div class="badge">v0.3.0 · Now on npm</div>
+    <div class="badge">v0.5.0 · Now with interactive tour</div>
     <h1>Hi, I'm <span class="brand">Buddy</span> 🤝</h1>
     <p class="tagline">
       I help brand-new contributors feel at home in <em>any</em> code repo —
       fast. I explain things like you're 10, write everything down in plain
       Markdown, and travel with the repo so the next person benefits too.
       Works with <strong>GitHub Copilot CLI</strong> and <strong>Claude Code CLI</strong>.
+    </p>
+    <p class="shields" aria-label="Project badges">
+      <a href="https://www.npmjs.com/package/@prustogi/buddy"><img alt="npm version" src="https://img.shields.io/npm/v/@prustogi/buddy.svg?label=npm&color=cb3837&logo=npm" /></a>
+      <a href="https://github.com/pallavrustogi/Buddy/blob/main/LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
+      <img alt="Node.js 18+" src="https://img.shields.io/badge/node-18%2B-43853d?logo=node.js&logoColor=white" />
+      <img alt="Works with GitHub Copilot CLI" src="https://img.shields.io/badge/GitHub%20Copilot%20CLI-supported-2da44e?logo=github" />
+      <img alt="Works with Claude Code" src="https://img.shields.io/badge/Claude%20Code-supported-d97706?logo=anthropic&logoColor=white" />
+      <img alt="Windows supported" src="https://img.shields.io/badge/Windows-supported-0078d4?logo=windows&logoColor=white" />
+      <img alt="macOS supported" src="https://img.shields.io/badge/macOS-supported-000000?logo=apple&logoColor=white" />
+      <img alt="Linux supported" src="https://img.shields.io/badge/Linux-supported-fcc624?logo=linux&logoColor=black" />
     </p>
     <div class="cta-row">
       <a class="btn btn-primary" href="#get-started">Get started</a>
@@ -79,6 +89,18 @@
         <div class="emoji">🛡️</div>
         <h3>Honest about uncertainty</h3>
         <p>If Buddy isn't sure, it says so — and writes the gap to <code>NOTES/open_questions.md</code> with a hint about which file to check next.</p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🎮</div>
+        <h3>Interactive tour (new in 0.5)</h3>
+        <p>Run <code>buddy tour</code> to get a single self-contained <code>.buddy/tour.html</code>. Double-click to open. Scroll-driven cards, a graduation quiz with real repo facts, and zero install.</p>
+      </article>
+
+      <article class="card">
+        <div class="emoji">🎯</div>
+        <h3>Starter tasks, auto-found</h3>
+        <p>The tour ships with curated warm-ups <em>and</em> auto-detected <code>TODO</code> / <code>FIXME</code> notes from the codebase — instant tiny PR ideas for day one.</p>
       </article>
     </div>
   </div>
@@ -141,7 +163,9 @@ claude
 ├── TECH_STACK.md            ← languages, frameworks, build tools
 ├── INTEGRATIONS.md          ← DBs, queues, auth, external APIs
 ├── CHANGELOG_SUMMARY.md     ← human-friendly recent changes
+├── STARTER_TASKS.md         ← curated warm-ups + auto-found TODOs
 ├── LINKS.md                 ← curated team links (with “why it matters”)
+├── tour.html                ← interactive onboarding webpage (self-contained)
 ├── manifest.json            ← last_indexed_commit + timestamps
 ├── MAP/
 │   ├── repo_map.md          ← top-folder purposes; where to start reading
@@ -183,6 +207,10 @@ claude
       <div class="cmd">
         <code>buddy agent install</code>
         <p>(Re)install for Copilot CLI. Use <code>--claude</code> for Claude Code, <code>--all</code> for both. <code>buddy agent list</code> shows what's installed where.</p>
+      </div>
+      <div class="cmd">
+        <code>buddy tour</code>
+        <p><strong>New in 0.5.</strong> Build the interactive <code>.buddy/tour.html</code> and open it in your default browser. Self-contained, no server, double-clickable.</p>
       </div>
     </div>
   </div>

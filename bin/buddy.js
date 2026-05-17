@@ -6,6 +6,7 @@ import { statusCommand } from '../src/commands/status.js';
 import { linkCommand } from '../src/commands/link.js';
 import { precheckCommand } from '../src/commands/precheck.js';
 import { agentCommand } from '../src/commands/agent.js';
+import { tourCommand } from '../src/commands/tour.js';
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
@@ -62,6 +63,12 @@ program
   .option('--claude', 'Install for Claude Code only (.claude/agents/).')
   .option('--all', 'Install for all CLIs (Copilot CLI + Claude Code).')
   .action(agentCommand);
+
+program
+  .command('tour')
+  .description('Generate (and open) an interactive .buddy/tour.html — single file, no install.')
+  .option('--no-open', 'Generate the file but do not open it in a browser.')
+  .action(tourCommand);
 
 program.parseAsync(process.argv).catch((err) => {
   console.error(`buddy: ${err.message}`);
