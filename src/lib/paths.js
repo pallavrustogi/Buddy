@@ -50,6 +50,10 @@ export function opencodeAgentPromptPath() {
   return join(packageRoot(), 'agents', 'buddy-opencode.agent.md');
 }
 
+export function ideAgentPromptPath() {
+  return join(packageRoot(), 'agents', 'buddy-ide.agent.md');
+}
+
 export function isDir(p) {
   try {
     return statSync(p).isDirectory();

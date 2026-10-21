@@ -18,7 +18,7 @@ How a brand-new contributor goes from "I just cloned this strange repo" to "I un
 | `buddy link <url>` | Drop a doc link from the terminal |
 | `buddy status` | "Is .buddy/ stale?" |
 
-Everything *smart* (writing docs, answering questions) happens inside your AI CLI — either **GitHub Copilot CLI** or **Claude Code CLI** — by talking to Buddy in plain English.
+Everything *smart* (writing docs, answering questions) happens inside your AI CLI — GitHub Copilot (CLI or VS Code), Claude Code, Codex, OpenCode, Cursor, Antigravity, Windsurf, Gemini CLI, Zed, or JetBrains — by talking to Buddy in plain English.
 
 ---
 
@@ -35,6 +35,10 @@ You also need at least one AI CLI installed. Buddy is the *brain definition*; th
 
 - **GitHub Copilot CLI:** `gh extension install github/gh-copilot`
 - **Claude Code CLI:** `npm install -g @anthropic-ai/claude-code`
+- **Codex CLI:** `npm install -g @openai/codex`
+- **OpenCode:** `npm install -g opencode-ai`
+- **Gemini CLI:** `npm install -g @google/gemini-cli`
+- **Editor-based tools** (Cursor, VS Code with GitHub Copilot, Google Antigravity, Windsurf, Zed, JetBrains): nothing to install — just open the repo in the editor.
 
 ## Step 2 — Clone the strange repo
 
@@ -54,7 +58,7 @@ buddy init
 What this does (deterministic, no AI yet):
 - Creates `.buddy/` with all template files (skeleton)
 - Creates `.buddy/manifest.json` with `last_indexed_commit: null`
-- Installs the Buddy agent for **both** Copilot CLI and Claude Code
+- Installs the Buddy agent for every supported tool (see the table below)
 - Prints next steps
 
 If `.buddy/` already exists (a teammate already committed it):
@@ -67,8 +71,18 @@ Agent files installed by `buddy init`:
 |---|---|
 | GitHub Copilot CLI | `.github/agents/buddy.md` |
 | Claude Code CLI | `.claude/agents/buddy.md` |
+| Codex CLI | `AGENTS.md` |
+| OpenCode | `.opencode/agent/buddy.md` |
+| Cursor | `.cursor/rules/buddy.mdc` |
+| VS Code (GitHub Copilot) | `.github/agents/buddy.agent.md` |
+| Google Antigravity | `.agents/rules/buddy.md` |
+| Windsurf | `.windsurf/rules/buddy.md` |
+| Gemini CLI | `GEMINI.md` |
+| Zed | `.rules` |
+| JetBrains AI Assistant | `.aiassistant/rules/buddy.md` |
+| JetBrains Junie | `.junie/AGENTS.md` |
 
-To install at user level instead: use `buddy agent install --user` or `buddy agent install --claude --user`.
+To install at user level instead: use `buddy agent install --user` or `buddy agent install --claude --user`. Cursor, VS Code, Antigravity, Windsurf, Zed, and JetBrains are repo-level only; Gemini CLI also supports `~/.gemini/GEMINI.md`. Install a single tool with e.g. `buddy agent install --cursor`.
 
 ## Step 4 — Load Buddy into your AI CLI
 
@@ -87,7 +101,25 @@ claude
 > @buddy              # Buddy is auto-discovered from .claude/agents/buddy.md
 ```
 
-The AI CLI now acts as Buddy in this repo.
+**Codex CLI** — `codex`, then ask it to scan the repo (instructions load from `AGENTS.md`).
+
+**OpenCode** — `opencode`, press Tab to switch to the `buddy` agent.
+
+**Cursor** — open an Agent chat and type `@buddy scan this repo and fill in .buddy/`.
+
+**VS Code (GitHub Copilot)** — open Copilot Chat and pick `buddy` in the agent dropdown.
+
+**Google Antigravity** — ask the agent to follow the `buddy` rule.
+
+**Windsurf** — in Cascade, ask it to use the `buddy` rule.
+
+**Gemini CLI** — `gemini`; instructions load from `GEMINI.md`.
+
+**Zed** — open the Agent Panel; `.rules` loads automatically.
+
+**JetBrains** — Junie loads `.junie/AGENTS.md` automatically. For AI Assistant chat, set the `buddy` project rule to Always or Manual in Settings → Rules.
+
+Your AI tool now acts as Buddy in this repo.
 
 ## Step 5 — First ask: "Scan this repo"
 
@@ -216,13 +248,13 @@ Buddy should **never leave the user staring at a blank terminal** after a succes
 - ✅ Cite file paths/line ranges when answering questions
 - ✅ Portable — pure markdown + JSON, no DB, no embeddings
 - ✅ Auto-open the home page so users never feel lost
-- ✅ Works with GitHub Copilot CLI and Claude Code CLI
+- ✅ Works with GitHub Copilot (CLI and VS Code), Claude Code, Codex, OpenCode, Cursor, Antigravity, Windsurf, Gemini CLI, Zed, and JetBrains
 
 ## Limitations (be honest)
 
 - ❌ Not a code search engine — relies on the host AI tool's file reading
 - ❌ Can't read external URLs — stores link metadata only
 - ❌ First-pass `ARCHITECTURE.md` is best-effort and marked "inferred"
-- ❌ AI-tool dependent — needs GitHub Copilot CLI or Claude Code (or equivalent) for the smart parts
+- ❌ AI-tool dependent — needs one of the supported AI tools (or equivalent) for the smart parts
 - ❌ No live cross-machine sync — pull + re-run to refresh
 - ❌ Faithful to the repo — if the repo is misleading, Buddy reflects that

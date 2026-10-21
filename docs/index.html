@@ -12,13 +12,13 @@
 
 <header class="hero">
   <div class="container">
-    <div class="badge">v0.7.0 · Now with OpenCode support</div>
+    <div class="badge">v0.7.0 · Now with Cursor, VS Code, Windsurf, Zed, JetBrains &amp; more</div>
     <h1>Hi, I'm <span class="brand">Buddy</span> 🤝</h1>
     <p class="tagline">
       I help brand-new contributors feel at home in <em>any</em> code repo —
       fast. I explain things like you're 10, write everything down in plain
       Markdown, and travel with the repo so the next person benefits too.
-      Works with <strong>GitHub Copilot CLI</strong>, <strong>Claude Code CLI</strong>, <strong>Codex CLI</strong>, and <strong>OpenCode</strong>.
+      Works with <strong>GitHub Copilot CLI</strong>, <strong>Claude Code CLI</strong>, <strong>Codex CLI</strong>, and <strong>OpenCode</strong>, <strong>Cursor</strong>, <strong>VS Code (GitHub Copilot)</strong>, <strong>Google Antigravity</strong>, <strong>Windsurf</strong>, <strong>Gemini CLI</strong>, <strong>Zed</strong>, and <strong>JetBrains</strong>.
     </p>
     <p class="shields" aria-label="Project badges">
       <a href="https://www.npmjs.com/package/@prustogi/buddy"><img alt="npm version" src="https://img.shields.io/npm/v/@prustogi/buddy.svg?label=npm&color=cb3837&logo=npm" /></a>
@@ -28,6 +28,13 @@
       <img alt="Works with Claude Code" src="https://img.shields.io/badge/Claude%20Code-supported-d97706?logo=anthropic&logoColor=white" />
       <img alt="Works with Codex CLI" src="https://img.shields.io/badge/Codex%20CLI-supported-412991?logo=openai&logoColor=white" />
       <img alt="Works with OpenCode" src="https://img.shields.io/badge/OpenCode-supported-0b0b0b" />
+      <img alt="Works with Cursor" src="https://img.shields.io/badge/Cursor-supported-000000" />
+      <img alt="Works with VS Code Copilot" src="https://img.shields.io/badge/VS%20Code%20Copilot-supported-007acc?logo=visualstudiocode&logoColor=white" />
+      <img alt="Works with Google Antigravity" src="https://img.shields.io/badge/Antigravity-supported-4285f4?logo=google&logoColor=white" />
+      <img alt="Works with Windsurf" src="https://img.shields.io/badge/Windsurf-supported-0b7285" />
+      <img alt="Works with Gemini CLI" src="https://img.shields.io/badge/Gemini%20CLI-supported-8e75b2?logo=googlegemini&logoColor=white" />
+      <img alt="Works with Zed" src="https://img.shields.io/badge/Zed-supported-084ccf" />
+      <img alt="Works with JetBrains" src="https://img.shields.io/badge/JetBrains-supported-000000?logo=jetbrains&logoColor=white" />
       <img alt="Windows supported" src="https://img.shields.io/badge/Windows-supported-0078d4?logo=windows&logoColor=white" />
       <img alt="macOS supported" src="https://img.shields.io/badge/macOS-supported-000000?logo=apple&logoColor=white" />
       <img alt="Linux supported" src="https://img.shields.io/badge/Linux-supported-fcc624?logo=linux&logoColor=black" />
@@ -126,7 +133,7 @@
         <span class="step-num">2</span>
         <div>
           <h3>Initialize</h3>
-          <p>This scaffolds <code>.buddy/</code>, installs the Buddy agent for Copilot CLI (<code>.github/agents/</code>), Claude Code (<code>.claude/agents/</code>), Codex CLI (<code>AGENTS.md</code>), and OpenCode (<code>.opencode/agent/</code>), and opens the welcome page.</p>
+          <p>This scaffolds <code>.buddy/</code>, installs the Buddy agent for Copilot CLI (<code>.github/agents/</code>), Claude Code (<code>.claude/agents/</code>), Codex CLI (<code>AGENTS.md</code>), OpenCode (<code>.opencode/agent/</code>), and editor tools: Cursor (<code>.cursor/rules/</code>), VS Code Copilot (<code>.github/agents/buddy.agent.md</code>), Antigravity (<code>.agents/rules/</code>), Windsurf (<code>.windsurf/rules/</code>), Gemini CLI (<code>GEMINI.md</code>), Zed (<code>.rules</code>), and JetBrains (<code>.aiassistant/rules/</code>, <code>.junie/AGENTS.md</code>). Then it opens the welcome page.</p>
           <pre><code>cd your-repo
 buddy init</code></pre>
         </div>
@@ -135,7 +142,7 @@ buddy init</code></pre>
         <span class="step-num">3</span>
         <div>
           <h3>Meet your buddy</h3>
-          <p>Launch your AI CLI of choice in the same folder, then ask Buddy to scan the repo and fill in the docs.</p>
+          <p>Launch your AI tool of choice in the same folder, then ask Buddy to scan the repo and fill in the docs.</p>
           <pre><code># GitHub Copilot CLI
 copilot
 /agent     # then pick "buddy"
@@ -148,7 +155,30 @@ claude
 codex      # Buddy instructions pre-loaded via AGENTS.md
 
 # — or — OpenCode
-opencode   # press Tab to switch to the "buddy" agent</code></pre>
+opencode   # press Tab to switch to the "buddy" agent
+
+# — or — Cursor
+# open the repo, start an Agent chat, then:
+@buddy scan this repo and fill in .buddy/
+
+# — or — VS Code (GitHub Copilot)
+# open Copilot Chat, pick "buddy" in the agent dropdown
+
+# — or — Google Antigravity
+# ask the agent to follow the "buddy" rule
+
+# — or — Windsurf
+# in Cascade: "use the buddy rule to scan this repo"
+
+# — or — Gemini CLI
+gemini     # Buddy instructions pre-loaded via GEMINI.md
+
+# — or — Zed
+# open the Agent Panel; .rules is loaded automatically
+
+# — or — JetBrains
+# Junie loads .junie/AGENTS.md automatically; for AI Assistant chat,
+# set the "buddy" project rule to Always or Manual in Settings → Rules</code></pre>
         </div>
       </li>
     </ol>
@@ -214,7 +244,7 @@ opencode   # press Tab to switch to the "buddy" agent</code></pre>
       </div>
       <div class="cmd">
         <code>buddy agent install</code>
-        <p>(Re)install for Copilot CLI. Use <code>--claude</code> for Claude Code, <code>--codex</code> for Codex CLI, <code>--opencode</code> for OpenCode, <code>--all</code> for all four. <code>buddy agent list</code> shows what's installed where.</p>
+        <p>(Re)install for Copilot CLI. Use <code>--claude</code> for Claude Code, <code>--codex</code> for Codex CLI, <code>--opencode</code> for OpenCode, <code>--cursor</code>, <code>--vscode</code>, <code>--antigravity</code>, <code>--windsurf</code>, <code>--gemini</code>, <code>--zed</code>, <code>--jetbrains</code>, <code>--junie</code> for the editor tools, or <code>--all</code> for everything. <code>buddy agent list</code> shows what's installed where.</p>
       </div>
       <div class="cmd">
         <code>buddy tour</code>
@@ -252,7 +282,7 @@ opencode   # press Tab to switch to the "buddy" agent</code></pre>
 <footer class="footer">
   <div class="container">
     <p>
-      <strong>Buddy</strong> · MIT license · Works with GitHub Copilot CLI, Claude Code CLI, Codex CLI &amp; OpenCode
+      <strong>Buddy</strong> · MIT license · Works with GitHub Copilot CLI, Claude Code CLI, Codex CLI, OpenCode, Cursor, VS Code, Antigravity, Windsurf, Gemini CLI, Zed &amp; JetBrains
     </p>
     <p class="muted">
       Knowledge that travels with the repo. Onboarding that doesn't go stale.

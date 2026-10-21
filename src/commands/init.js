@@ -5,7 +5,7 @@ import { copyTree } from '../lib/scaffold.js';
 import { readManifest, writeManifest, defaultManifest } from '../lib/manifest.js';
 import { hasGit, headCommit } from '../lib/git.js';
 import { openFile } from '../lib/opener.js';
-import { installAgent, installClaudeAgent, installCodexAgent, installOpencodeAgent } from './agent.js';
+import { installAgent, installClaudeAgent, installCodexAgent, installOpencodeAgent, installIdeTarget, IDE_TARGETS } from './agent.js';
 import { generateTourHtml } from './tour.js';
 import { writeFileSync } from 'node:fs';
 
@@ -64,6 +64,7 @@ export async function initCommand(opts) {
   console.log('  Claude Code:  @buddy  →  "Scan this repo and fill in .buddy/"');
   console.log('  Codex CLI:    launch codex  →  Buddy instructions are in AGENTS.md');
   console.log('  OpenCode:     launch opencode  →  press Tab to switch to the "buddy" agent');
+  for (const t of Object.values(IDE_TARGETS)) console.log(`  ${t.label}: ${t.next}`);
 
   autoOpenHome(homePage, opts);
 }
@@ -126,6 +127,23 @@ function maybeInstallAgent(repoRoot, opts) {
     }
   } catch (err) {
     console.log(`! Could not install OpenCode agent: ${err.message}`);
+  }
+
+  // Editor/IDE targets mostly have no user scope; installIdeTarget reports that.
+  for (const [key, t] of Object.entries(IDE_TARGETS)) {
+    try {
+      const result = installIdeTarget(key, { scope, repoRoot });
+      if (result.action === 'unsupported-scope') continue;
+      if (result.action === 'already-installed') {
+        console.log(`✓ ${t.label} agent already installed at ${result.dest}`);
+      } else if (result.action === 'exists-different') {
+        console.log(`! ${t.label} agent at ${result.dest} differs — run "buddy agent install ${t.flag} --force" to update.`);
+      } else {
+        console.log(`🤝 Installed ${t.label} agent at ${result.dest}`);
+      }
+    } catch (err) {
+      console.log(`! Could not install ${t.label} agent: ${err.message}`);
+    }
   }
 }
 

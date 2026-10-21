@@ -63,7 +63,15 @@ program
   .option('--claude', 'Install for Claude Code only (.claude/agents/).')
   .option('--codex', 'Install for Codex CLI only (AGENTS.md).')
   .option('--opencode', 'Install for OpenCode only (.opencode/agent/).')
-  .option('--all', 'Install for all CLIs (Copilot CLI + Claude Code + Codex + OpenCode).')
+  .option('--cursor', 'Install for Cursor only (.cursor/rules/buddy.mdc).')
+  .option('--vscode', 'Install for VS Code GitHub Copilot only (.github/agents/buddy.agent.md).')
+  .option('--antigravity', 'Install for Google Antigravity only (.agents/rules/buddy.md).')
+  .option('--windsurf', 'Install for Windsurf only (.windsurf/rules/buddy.md).')
+  .option('--gemini', 'Install for Gemini CLI only (GEMINI.md).')
+  .option('--zed', 'Install for Zed only (.rules).')
+  .option('--jetbrains', 'Install for JetBrains AI Assistant only (.aiassistant/rules/buddy.md).')
+  .option('--junie', 'Install for JetBrains Junie only (.junie/AGENTS.md).')
+  .option('--all', 'Install for every supported tool.')
   .action(agentCommand);
 
 program
