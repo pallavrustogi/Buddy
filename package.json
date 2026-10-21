@@ -3,7 +3,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "0.7.0",
+  "version": "0.8.0",
   "description": "A friendly onboarding agent for GitHub Copilot (CLI and VS Code), Claude Code, Codex CLI, OpenCode, Cursor, Google Antigravity, Windsurf, Gemini CLI, Zed, and JetBrains. Helps newcomers understand any code repository. Stores portable, git-friendly knowledge in .buddy/.",
   "keywords": [
     "copilot",
